@@ -82,11 +82,11 @@ static BOOL sub_0206C120(FieldTask *taskMan)
     case 3:
         FieldTransition_StartMap(taskMan);
         v1->unk_0C = 4;
+        v1->unk_0E = 0;
         break;
     case 4: {
         MapObject *v3 = Player_MapObject(fieldSystem->playerAvatar);
 
-        v1->unk_0D++;
 
         if (v1->unk_0D <= 5) {
             int v4;
@@ -95,7 +95,6 @@ static BOOL sub_0206C120(FieldTask *taskMan)
             MapObject_SetHidden(v3, 1);
             ov6_022426C0(v1->unk_00, v4);
             ov6_022427F4(v1->unk_00);
-            v1->unk_0E = 0;
             Sound_PlayEffect(1657);
             sub_02056B30(taskMan, 3, 17, 0xffff, 0x0, 6, 1, 11);
             v1->unk_0C = 5;
@@ -113,12 +112,13 @@ static BOOL sub_0206C120(FieldTask *taskMan)
             v1->unk_08 = ov6_02242AEC(v1->unk_04);
             Sound_PlayEffect(1657);
             sub_02056B30(taskMan, 3, 16, 0xffff, 0x0, 6, 1, 11);
-            v1->unk_0C = 6;
+            v1->unk_0C = (++v1->unk_0E < MAX_GRASS_ENCOUNTERS) ? 4 : 6;
         }
         break;
     case 6:
         ov6_02242814(v1->unk_00);
         v1->unk_0C = 7;
+        v1->unk_0D++;
         break;
     case 7:
         if (ov6_02242820(v1->unk_00)) {

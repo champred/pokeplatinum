@@ -11,9 +11,6 @@ on:
 
 env:
   LM_LICENSE_FILE: "${{ github.workspace }}/tools/cw/license.dat"
-  CALCROM_DISCORD_WEBHOOK_AVATAR_URL: "https://i.imgur.com/38BQHdd.png"
-  CALCROM_DISCORD_WEBHOOK_USERNAME: "OK"
-  CALCROM_WEBHOOK_URL: "${{ secrets.WEBHOOKURL }}"
   BUILD: /var/tmp/pokeplatinum
 
 jobs:
@@ -39,15 +36,7 @@ jobs:
         run: make configure
 
       - name: Build Repo
-        run: make check
-
-      - name: Webhook
-        if: ${{ github.event_name == 'push' }}
-        env:
-          arm9name: ${{ vars.BUILD }}
-        run: |
-          .github/calcrom/webhook.sh "$CALCROM_WEBHOOK_URL" "$BUILD"
-        continue-on-error: true
+        run: make release
 
       - name: Checkout xMAP
         if: ${{ github.event_name == 'push' }}
@@ -71,15 +60,9 @@ jobs:
           add: "*.xMAP"
           message: ${{ env.XMAP_COMMIT_MSG }}
 
-      - name: Post error archive
-        if: failure()
-        continue-on-error: true
-        run: tar czf failure.tar.gz "$BUILD"
-
-      - name: Post error upload
-        if: failure()
+      - name: Build upload
         uses: actions/upload-artifact@v4
         with:
-          name: pokeplatinum-failure-${{ github.run_id }}
-          path: failure.tar.gz
+          name: ${{ github.run_id }}
+          path: ${{ env.BUILD }}
           retention-days: 1

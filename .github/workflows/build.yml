@@ -11,7 +11,6 @@ on:
 
 env:
   LM_LICENSE_FILE: "${{ github.workspace }}/tools/cw/license.dat"
-  BUILD: /var/tmp/pokeplatinum
 
 jobs:
   build:
@@ -49,7 +48,7 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         run: |
           mkdir -p xmap
-          cp "$BUILD"/*.xMAP xmap/platinumus.xMAP
+          cp build/*.xMAP xmap/platinumus.xMAP
           echo "XMAP_COMMIT_MSG=$( git log --format=%s ${GITHUB_SHA} )" >> $GITHUB_ENV
 
       - name: Update xMAP
@@ -64,5 +63,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ github.run_id }}
-          path: ${{ env.BUILD }}
+          path: build
           retention-days: 1

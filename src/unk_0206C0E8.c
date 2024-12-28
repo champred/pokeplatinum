@@ -71,7 +71,7 @@ static BOOL sub_0206C120(FieldTask *taskMan)
 
         if (v1->unk_0D == 0) {
             SystemFlag_SetPoketchHidden(v2);
-        } else if (v1->unk_0D == 35) {
+        } else if (v1->unk_0D == 5) {
             SystemFlag_ClearPoketchHidden(v2);
         }
     }
@@ -88,7 +88,7 @@ static BOOL sub_0206C120(FieldTask *taskMan)
 
         v1->unk_0D++;
 
-        if (v1->unk_0D <= 35) {
+        if (v1->unk_0D <= 5) {
             int v4;
 
             v4 = ov6_02242984(fieldSystem);

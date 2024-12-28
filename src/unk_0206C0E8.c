@@ -86,12 +86,10 @@ static BOOL sub_0206C120(FieldTask *taskMan)
         break;
     case 4: {
         MapObject *v3 = Player_MapObject(fieldSystem->playerAvatar);
-
-
         if (v1->unk_0D <= 5) {
             int v4;
 
-            v4 = ov6_02242984(fieldSystem);
+            v4 = ov6_02242984(fieldSystem, v1->unk_0E);
             MapObject_SetHidden(v3, 1);
             ov6_022426C0(v1->unk_00, v4);
             ov6_022427F4(v1->unk_00);
@@ -105,8 +103,6 @@ static BOOL sub_0206C120(FieldTask *taskMan)
         }
     } break;
     case 5:
-        //v1->unk_0E++;
-
         if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             ov6_02242A94(v1->unk_0D, v1->unk_04);
             v1->unk_08 = ov6_02242AEC(v1->unk_04);

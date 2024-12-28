@@ -32,7 +32,7 @@ typedef struct UnkStruct_ov6_02242A8C_t {
     int unk_30;
 } UnkStruct_ov6_02242A8C;
 
-int ov6_02242984(FieldSystem *fieldSystem)
+int ov6_02242984(FieldSystem *fieldSystem, u8 index)
 {
     int v2[MAX_GRASS_ENCOUNTERS];
 
@@ -48,7 +48,7 @@ int ov6_02242984(FieldSystem *fieldSystem)
     WildEncounters_ReplaceTimedEncounters(encounterData, &v2[2], &v2[3]);
     WildEncounters_ReplaceDualSlotEncounters(encounterData, v1, &v2[8], &v2[9]);
 
-    return v2[inline_020564D0(MAX_GRASS_ENCOUNTERS)];
+    return v2[index];
 }
 
 UnkStruct_ov6_02242A8C *ov6_02242A10(const int param0, FieldSystem *fieldSystem)

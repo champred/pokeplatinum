@@ -26,7 +26,7 @@ typedef struct {
 } UnkStruct_ov6_02242A10;
 
 typedef struct UnkStruct_ov6_02242A8C_t {
-    UnkStruct_ov6_02242A10 unk_00[36];
+    UnkStruct_ov6_02242A10 unk_00[6];
     Location unk_18;
     FieldSystem *fieldSystem;
     int unk_30;
@@ -65,15 +65,15 @@ UnkStruct_ov6_02242A8C *ov6_02242A10(const int param0, FieldSystem *fieldSystem)
 
         v3 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 11, 4);
 
-        for (v0 = 0; v0 < 35; v0++) {
-            //v2 = inline_020564D0(36);
-            v1->unk_00[v0].unk_00 = v3[v0].unk_00;
-            v1->unk_00[v0].unk_02 = v3[v0].unk_02;
+        for (v0 = 0; v0 < 5; v0++) {
+            v2 = inline_020564D0(36);
+            v1->unk_00[v0].unk_00 = v3[v2].unk_00;
+            v1->unk_00[v0].unk_02 = v3[v2].unk_02;
         }
 
         {
-            v1->unk_00[35].unk_00 = Player_GetXPos(fieldSystem->playerAvatar);
-            v1->unk_00[35].unk_02 = Player_GetZPos(fieldSystem->playerAvatar);
+            v1->unk_00[5].unk_00 = Player_GetXPos(fieldSystem->playerAvatar);
+            v1->unk_00[5].unk_02 = Player_GetZPos(fieldSystem->playerAvatar);
             v1->unk_30 = fieldSystem->location->mapId;
         }
 

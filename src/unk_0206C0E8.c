@@ -106,9 +106,9 @@ static BOOL sub_0206C120(FieldTask *taskMan)
         }
     } break;
     case 5:
-        v1->unk_0E++;
+        //v1->unk_0E++;
 
-        if ((v1->unk_0E >= 60) || (gCoreSys.pressedKeys & PAD_BUTTON_A)) {
+        if (gCoreSys.pressedKeys & PAD_BUTTON_A) {
             ov6_02242A94(v1->unk_0D, v1->unk_04);
             v1->unk_08 = ov6_02242AEC(v1->unk_04);
             Sound_PlayEffect(1657);

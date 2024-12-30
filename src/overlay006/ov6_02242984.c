@@ -35,7 +35,6 @@ typedef struct UnkStruct_ov6_02242A8C_t {
 int ov6_02242984(FieldSystem *fieldSystem, u8 index)
 {
     int v2[MAX_GRASS_ENCOUNTERS];
-
     WildEncounters *encounterData = MapHeaderData_GetWildEncounters(fieldSystem);
 
     for (u8 i = 0; i < MAX_GRASS_ENCOUNTERS; i++) {
@@ -48,27 +47,37 @@ int ov6_02242984(FieldSystem *fieldSystem, u8 index)
     WildEncounters_ReplaceTimedEncounters(encounterData, &v2[2], &v2[3]);
     WildEncounters_ReplaceDualSlotEncounters(encounterData, v1, &v2[8], &v2[9]);
 
+    for (u8 i = 0; i < index; i++) {
+        if (v2[i] == v2[index])
+            return 0;
+    }
     return v2[index];
 }
 
 UnkStruct_ov6_02242A8C *ov6_02242A10(const int param0, FieldSystem *fieldSystem)
 {
-    u8 v0;
-    UnkStruct_ov6_02242A8C *v1;
-
-    v1 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_02242A8C));
+    u8 i, j;
+    u16 used[] = {[0 ... 5] = 36};
+    UnkStruct_ov6_02242A8C *v1 = Heap_AllocFromHeapAtEnd(param0, sizeof(UnkStruct_ov6_02242A8C));
     v1->fieldSystem = fieldSystem;
 
     {
         u8 v2;
-        UnkStruct_ov6_02242A10 *v3;
+        UnkStruct_ov6_02242A10 *v3 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 11, 4);
 
-        v3 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 11, 4);
-
-        for (v0 = 0; v0 < 5; v0++) {
+        for (i = 0; i < 5; i++) {
             v2 = inline_020564D0(36);
-            v1->unk_00[v0].unk_00 = v3[v2].unk_00;
-            v1->unk_00[v0].unk_02 = v3[v2].unk_02;
+            for (j = 0; j < 5; j++) {
+                if (used[j] == v2) {
+                    i--;
+                    break;
+                }
+            }
+            if (j == 5) {
+                used[i] = v2;
+                v1->unk_00[i].unk_00 = v3[v2].unk_00;
+                v1->unk_00[i].unk_02 = v3[v2].unk_02;
+            }
         }
 
         {

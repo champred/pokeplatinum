@@ -90,6 +90,10 @@ static BOOL sub_0206C120(FieldTask *taskMan)
             int v4;
 
             v4 = ov6_02242984(fieldSystem, v1->unk_0E);
+            if (!v4) {
+                v1->unk_0C = (++v1->unk_0E < MAX_GRASS_ENCOUNTERS) ? 4 : 6;
+                break;
+            }
             MapObject_SetHidden(v3, 1);
             ov6_022426C0(v1->unk_00, v4);
             ov6_022427F4(v1->unk_00);

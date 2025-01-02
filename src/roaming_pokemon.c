@@ -241,12 +241,25 @@ void sub_0206C404(UnkStruct_0202D7B0 *param0, const int param1)
     }
 }
 
+struct RoamingSlot {
+    int species;
+    u8 level;
+};
+
+static const struct RoamingSlot sRoamingSlots[ROAMING_SLOT_MAX] = {
+    [ROAMING_SLOT_MESPRIT] = {SPECIES_MESPRIT, 50},
+    [ROAMING_SLOT_CRESSELIA] = {SPECIES_CRESSELIA, 50},
+    [ROAMING_SLOT_DARKRAI] = {SPECIES_DARKRAI, 40},
+    [ROAMING_SLOT_MOLTRES] = {SPECIES_MOLTRES, 60},
+    [ROAMING_SLOT_ZAPDOS] = {SPECIES_ZAPDOS, 60},
+    [ROAMING_SLOT_ARTICUNO] = {SPECIES_ARTICUNO, 60}
+};
+
 void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
 {
     Pokemon *v0;
     UnkStruct_0206C638 *v1;
     UnkStruct_0202D7B0 *v2;
-    int previouslyVisitedMap;
     TrainerInfo *v4;
     int species;
     u8 level;
@@ -256,31 +269,15 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
 
     switch (slot) {
     case ROAMING_SLOT_MESPRIT:
-        species = SPECIES_MESPRIT;
-        level = 50;
-        break;
     case ROAMING_SLOT_CRESSELIA:
-        species = SPECIES_CRESSELIA;
-        level = 50;
-        break;
     case ROAMING_SLOT_DARKRAI:
-        species = SPECIES_DARKRAI;
-        level = 40;
-        break;
     case ROAMING_SLOT_MOLTRES:
-        species = SPECIES_MOLTRES;
-        level = 60;
-        break;
     case ROAMING_SLOT_ZAPDOS:
-        species = SPECIES_ZAPDOS;
-        level = 60;
-        break;
     case ROAMING_SLOT_ARTICUNO:
-        species = SPECIES_ARTICUNO;
-        level = 60;
+        species = sRoamingSlots[slot].species;
+        level = sRoamingSlots[slot].level;
         break;
     default:
-        GF_ASSERT(0);
         return;
     }
 
@@ -298,9 +295,7 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
     sub_0202D980(v1, 3, Pokemon_GetValue(v0, MON_DATA_PERSONALITY, NULL));
     sub_0202D980(v1, 5, Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL));
     Heap_FreeToHeap(v0);
-
-    previouslyVisitedMap = sub_0202D8BC(v2);
-    sub_0206C538(v2, slot, previouslyVisitedMap);
+    sub_0206C538(v2, slot, sub_0202D8BC(v2));
 }
 
 static void sub_0206C538(UnkStruct_0202D7B0 *param0, const u8 param1, const int param2)

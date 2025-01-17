@@ -241,20 +241,6 @@ void sub_0206C404(UnkStruct_0202D7B0 *param0, const int param1)
     }
 }
 
-struct RoamingSlot {
-    int species;
-    u8 level;
-};
-
-static const struct RoamingSlot sRoamingSlots[ROAMING_SLOT_MAX] = {
-    [ROAMING_SLOT_MESPRIT] = {SPECIES_MESPRIT, 50},
-    [ROAMING_SLOT_CRESSELIA] = {SPECIES_CRESSELIA, 50},
-    [ROAMING_SLOT_DARKRAI] = {SPECIES_DARKRAI, 40},
-    [ROAMING_SLOT_MOLTRES] = {SPECIES_MOLTRES, 60},
-    [ROAMING_SLOT_ZAPDOS] = {SPECIES_ZAPDOS, 60},
-    [ROAMING_SLOT_ARTICUNO] = {SPECIES_ARTICUNO, 60}
-};
-
 void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
 {
     Pokemon *v0;
@@ -269,13 +255,8 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
 
     switch (slot) {
     case ROAMING_SLOT_MESPRIT:
-    case ROAMING_SLOT_CRESSELIA:
-    case ROAMING_SLOT_DARKRAI:
-    case ROAMING_SLOT_MOLTRES:
-    case ROAMING_SLOT_ZAPDOS:
-    case ROAMING_SLOT_ARTICUNO:
-        species = sRoamingSlots[slot].species;
-        level = sRoamingSlots[slot].level;
+        species = SPECIES_MESPRIT;
+        level = 50;
         break;
     default:
         return;

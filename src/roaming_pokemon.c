@@ -277,6 +277,30 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
     sub_0202D980(v1, 5, Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL));
     Heap_FreeToHeap(v0);
     sub_0206C538(v2, slot, sub_0202D8BC(v2));
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
 }
 
 static void sub_0206C538(UnkStruct_0202D7B0 *param0, const u8 param1, const int param2)
